@@ -20,7 +20,7 @@ const GadgetSchema = new Schema({
     price: Number,
     description: String,
     inStock: Boolean,    
-    images: [ImageSchema],
+    images: [ImageSchema]
 }, opts);
 
 module.exports = mongoose.model('Gadget', GadgetSchema);
