@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Gadget</title>
+</head>
+
+<body>
+
+    <form action="/gadgets/<%= gadget._id %>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="gadget[title]" value="<%= gadget.title %>">
+        </div>
+        <div>
+            <label for="category">Category</label>
+            <input type="text" id="category" name="gadget[category]" value="<%= gadget.category %>">
+        </div>
+        <div>
+            <label for="brand">Brand</label>
+            <input type="text" id="brand" name="gadget[brand]" value="<%= gadget.brand %>">
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <input type="number" id="price" name="gadget[price]" value="<%= gadget.price %>">
+        </div>
+        <div>
+            <label for="inStock">InStock</label>
+            <input type="checkbox" checked="checked" id="inStock" name="gadget[inStock]" value="<%= gadget.inStock %>">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" name="gadget[description]" value="<%= gadget.description %>">
+        </div>
+        <button>Update Gadget</button>
+    </form>
+
+    <a href="/gadgets/<%= gadget._id %>">Back To Gadget</a>
+
+</body>
+
+</html>
