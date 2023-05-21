@@ -46,10 +46,10 @@ app.get('/gadgets/new', (req, res) => {
 
 app.post('/gadgets', async (req, res) => {
 
-    const newRequestGadget = req.body.gadget;
-    newRequestGadget.inStock = newRequestGadget.inStock == "on" ? true : false;
+    const newGadget = req.body.gadget;
+    newGadget.inStock = newGadget.inStock == "on" ? true : false;
 
-    const gadget = new Gadget(newRequestGadget);
+    const gadget = new Gadget(newGadget);
     await gadget.save();
 
     res.redirect(`/gadgets/${gadget._id}`);
@@ -59,6 +59,23 @@ app.get('/gadgets/:id', async (req, res) => {
 
     const gadget = await Gadget.findById(req.params.id);
     res.render('gadgets/show', { gadget });
+});
+
+app.get('/gadgets/:id/edit', async (req, res) => {
+
+    const gadget = await Gadget.findById(req.params.id);
+    res.render('gadgets/edit', { gadget });
+});
+
+app.put('/gadgets/:id', async (req, res) => {
+
+    const { id } = req.params;
+    const editGadget = req.body.gadget;
+    editGadget.inStock = editGadget.inStock == "on" ? true : false;
+
+    const gadget = await Gadget.findByIdAndUpdate(id, { ...editGadget });
+
+    res.redirect(`/gadgets/${gadget._id}`);
 });
 
 app.listen(3000, () => {
