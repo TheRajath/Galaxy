@@ -78,6 +78,15 @@ app.put('/gadgets/:id', async (req, res) => {
     res.redirect(`/gadgets/${gadget._id}`);
 });
 
+app.delete('/gadgets/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    await Gadget.findByIdAndDelete(id);
+
+    res.redirect('/gadgets');
+});
+
 app.listen(3000, () => {
 
     console.log('Serving on port 3000');
