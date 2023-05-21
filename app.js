@@ -39,6 +39,22 @@ app.get('/gadgets', async (req, res) => {
     res.render('gadgets/index', { gadgets });
 });
 
+app.get('/gadgets/new', (req, res) => {
+
+    res.render('gadgets/new');
+});
+
+app.post('/gadgets', async (req, res) => {
+
+    const newRequestGadget = req.body.gadget;
+    newRequestGadget.inStock = newRequestGadget.inStock == "on" ? true : false;
+
+    const gadget = new Gadget(newRequestGadget);
+    await gadget.save();
+
+    res.redirect(`/gadgets/${gadget._id}`);
+});
+
 app.get('/gadgets/:id', async (req, res) => {
 
     const gadget = await Gadget.findById(req.params.id);
