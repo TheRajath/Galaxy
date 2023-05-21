@@ -14,7 +14,7 @@
     <ul>
         <% for (let gadget of gadgets) { %>
             <li>
-                <%= gadget.title %>
+                <a href="/gadgets/<%= gadget._id %>"><%= gadget.title %></a>
             </li>
         <% } %>
     </ul>
